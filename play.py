@@ -62,25 +62,8 @@ def video_frame_callback(frame):
             st.session_state.selected = False
     return av.VideoFrame.from_ndarray(annotated, format="bgr24")
 
-
-class YoloProcessor(VideoProcessorBase):
-    def __init__(self) -> None:
-        super().__init__()
-        self.found = False
-
-
-    def recv(self, frame: av.VideoFrame) -> av.VideoFrame:
-        img = frame.to_ndarray(format="bgr24")
-        results = model(img)[0]
-        annotated = results.plot()
-        if self.ctx:
-            print(self.ctx)
-        else:
-            print("Ayoo")
-        return av.VideoFrame.from_ndarray(annotated, format="bgr24")
-
 st.title("Play")
 
-webrtc_streamer(key="sample",video_processor_factory=YoloProcessor,media_stream_constraints={"video": True, "audio": False})
+webrtc_streamer(key="sample",video_frame_callback=video_frame_callback,media_stream_constraints={"video": True, "audio": False})
 
 
