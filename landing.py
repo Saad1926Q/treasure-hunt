@@ -22,6 +22,7 @@ Built using [YOLOv8](https://github.com/ultralytics/ultralytics) for live object
 
 
 st.markdown("---")
-st.caption("Made with ❤️ using Streamlit + YOLOv8")
+st.caption(
+            'Made with ❤️ by [@saad1926q](https://github.com/Saad1926Q)'
+)
 st.caption("Theme inspired by [this](https://doc-theming-overview-anthropic-light-inspired.streamlit.app/)")
-

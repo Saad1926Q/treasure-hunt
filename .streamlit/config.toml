@@ -1,5 +1,6 @@
 [server]
 enableStaticServing = true
+runOnSave = false
 
 [[theme.fontFaces]]
 family = "SpaceGrotesk"
