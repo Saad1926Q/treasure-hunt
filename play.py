@@ -66,11 +66,17 @@ def video_frame_callback(frame):
 class YoloProcessor(VideoProcessorBase):
     def __init__(self) -> None:
         super().__init__()
+        self.found = False
+
 
     def recv(self, frame: av.VideoFrame) -> av.VideoFrame:
         img = frame.to_ndarray(format="bgr24")
         results = model(img)[0]
         annotated = results.plot()
+        if self.ctx:
+            print(self.ctx)
+        else:
+            print("Ayoo")
         return av.VideoFrame.from_ndarray(annotated, format="bgr24")
 
 st.title("Play")
